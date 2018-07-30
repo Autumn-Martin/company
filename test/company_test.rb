@@ -46,7 +46,10 @@ class CompanyTest < Minitest::Test
     assert_equal 500000, @company.payroll
   end
 
-  # def test_it_has_an_average_age
-  #   assert_equal 32.5, @company.average_age
-  # end
+  def test_it_has_an_average_age
+    @company.add_department(@department_1)
+    @company.add_department(@department_2)
+    
+    assert_equal 32.5, @company.average_age
+  end
 end

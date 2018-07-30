@@ -7,7 +7,7 @@ class EmployeeTest < Minitest::Test
 		employee = Employee.new({name: "Alice Smith", age: 20, salary: "50000"})
 
 		assert_instance_of Employee, employee
-	end
+  end
 
 	def test_it_has_name
 		employee = Employee.new({name: "Alice Smith", age: 20, salary: "50000"})

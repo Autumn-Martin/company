@@ -2,7 +2,6 @@ class Company
   attr_reader :name, :departments
   def initialize(name)
     @name = name
-    # @payroll = payroll
     @departments = []
   end
 
@@ -11,11 +10,11 @@ class Company
   end
 
   def get_employees
-    # require "pry"; binding.pry
     departments.map do |department|
       department.employees
     end.flatten
   end
+
 
   def payroll
     employees = get_employees
@@ -25,4 +24,12 @@ class Company
   end
 
 
+  def average_age
+    employees = get_employees
+    employee_number = employees.count
+    total_ages = employees.inject(0) do |sum, employee|
+      sum + employee.age
+    end
+    total_ages / employee_number.to_f
+  end
 end
