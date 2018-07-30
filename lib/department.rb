@@ -4,12 +4,19 @@ class Department
     @name = name
     @employee_count = 0
     @employees = []
+    # @total_salary = total_salary
   end
 
   def add_employee(employee)
     @employee_count = @employee_count + 1
     # require "pry"; binding.pry
     @employees << employee
+  end
+
+  def total_salary
+    total_salary = @employees.inject(0) do |addition, employee|
+      addition + employee.salary
+    end
   end
 
   def average_salary

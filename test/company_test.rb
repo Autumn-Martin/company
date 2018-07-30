@@ -15,11 +15,8 @@ class CompanyTest < Minitest::Test
     @department_2 = Department.new("Security")
     @company = Company.new("Ares Macrotechnology")
     @department_1.add_employee(employee_1)
-    # => 1
     @department_1.add_employee(employee_2)
-    # => 2
     @department_2.add_employee(employee_3)
-    # => 1
     @department_2.add_employee(employee_4)
   end
 
@@ -31,18 +28,25 @@ class CompanyTest < Minitest::Test
     assert_equal "Ares Macrotechnology", @company.name
   end
 
+  def test_departments_can_be_added
+    assert_equal 0, @company.departments.count
+    assert_equal [], @company.departments
+
+    @company.add_department(@department_1)
+    @company.add_department(@department_2)
+
+    assert_equal 2, @company.departments.count
+    assert_equal ([@department_1, @department_2]), @company.departments
+  end
   def test_it_has_payroll
+    @company.add_department(@department_1)
+    @company.add_department(@department_2)
+
+    assert_equal 2, @company.departments.count
     assert_equal 500000, @company.payroll
   end
+
+  # def test_it_has_an_average_age
+  #   assert_equal 32.5, @company.average_age
+  # end
 end
-
-
-# # => 2
-# company.add_department(department_1)
-# # => <#Department:3457689435>
-# company.add_department(department_2)
-# # => <#Department:8457875458>
-# company.payroll
-# # => 500000
-# company.average_age
-# # => 32.5
